@@ -1,4 +1,5 @@
 var express = require('express');
+var fortunes = require('./services/fortunes');
 var app = express();
 
 var handlebars = require('express-handlebars').create({ defaultLayout: 'main' });
@@ -12,7 +13,7 @@ app.get('/', function (request, response) {
 });
 
 app.get('/about', function (request, response) {
-    response.render('about');
+    response.render('about', { fortune: fortunes.getFortune() });
 });
 
 app.use(function (request, response, next) {
