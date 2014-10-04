@@ -8,12 +8,17 @@ app.set('view engine', 'handlebars');
 app.set('port', process.env.PORT || 3000);
 app.use(express.static(__dirname + '/public'));
 
+app.use(function (request, response, next) {
+    response.locals.showTests = app.get('env') !== 'production' && request.query.test === '1';
+    next();
+});
+
 app.get('/', function (request, response) {
     response.render('home');
 });
 
 app.get('/about', function (request, response) {
-    response.render('about', { fortune: fortunes.getFortune() });
+    response.render('about', { fortune: fortunes.getFortune(), pageTestScript: '/qa/tests-about.js' });
 });
 
 app.use(function (request, response, next) {
