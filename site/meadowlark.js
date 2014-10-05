@@ -2,9 +2,9 @@ var express = require('express');
 var fortunes = require('./services/fortunes');
 var app = express();
 
-var handlebars = require('express-handlebars').create({ defaultLayout: 'main' });
-app.engine('handlebars', handlebars.engine);
-app.set('view engine', 'handlebars');
+var handlebars = require('express-handlebars').create({ defaultLayout: 'main', extname: '.html' });
+app.engine('.html', handlebars.engine);
+app.set('view engine', '.html');
 app.set('port', process.env.PORT || 3000);
 app.use(express.static(__dirname + '/public'));
 
