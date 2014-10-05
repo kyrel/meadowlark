@@ -1,5 +1,10 @@
 # ignore packages installed by npm
 node_modules
 npm-debug.log
+obj
+*.sln
+*.suo
+*.njsproj
+.ntvs_analysis.*
 # put any other files you don't want to check in here,
 # such as .DS_Store (OSX), *.bak, etc.
